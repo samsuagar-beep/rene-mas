@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>René Más — Mis contadas reflexiones</title>
+<meta name="description" content="Mis contadas reflexiones — René Más">
+
+<!-- Montserrat + Cormorant Garamond para la firma -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --background: #f7f6f2;
+    --text: #171717;
+    --secondary: #77736d;
+    --line: #d9d6cf;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--background); color: var(--text); font-family: "Montserrat", sans-serif; font-weight: 400; }
+header { width: min(1100px, calc(100% - 48px)); margin: 0 auto; padding: 42px 0 30px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--line); }
+.logo { font-family: "Cormorant Garamond", serif; font-size: 34px; font-weight: 500; font-style: italic; letter-spacing: -1px; cursor: pointer; }
+nav { display: flex; gap: 28px; }
+nav a { color: var(--text); text-decoration: none; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; }
+main { width: min(1100px, calc(100% - 48px)); margin: auto; }
+.hero { padding: 120px 0 100px; }
+.hero h1 { font-size: clamp(42px, 7vw, 88px); font-weight: 300; letter-spacing: -4px; line-height: .95; margin: 0; max-width: 900px; }
+.hero p { color: var(--secondary); margin-top: 35px; font-size: 13px; letter-spacing: .3px; }
+.section-title { border-bottom: 1px solid var(--line); padding-bottom: 15px; margin-bottom: 0; font-size: 10px; text-transform: uppercase; letter-spacing: 2px; font-weight: 500; }
+.posts { margin-bottom: 130px; }
+.post { display: grid; grid-template-columns: 120px 1fr 100px; gap: 30px; padding: 38px 0; border-bottom: 1px solid var(--line); cursor: pointer; transition: opacity .2s ease; }
+.post:hover { opacity: .55; }
+.post-number, .post-date { font-size: 11px; color: var(--secondary); }
+.post-date { text-align: right; }
+.post h2 { font-weight: 400; font-size: clamp(21px, 3vw, 31px); margin: 0 0 13px; letter-spacing: -1px; }
+.post p { margin: 0; max-width: 650px; color: var(--secondary); line-height: 1.7; font-size: 13px; }
+.reader { display: none; width: min(760px, calc(100% - 48px)); margin: 0 auto; padding: 100px 0 150px; }
+.reader.active { display: block; }
+.home.hidden { display: none; }
+.back { border: 0; background: none; font-family: "Montserrat", sans-serif; padding: 0; margin-bottom: 80px; cursor: pointer; text-transform: uppercase; letter-spacing: 1.5px; font-size: 10px; }
+.article-date { font-size: 11px; color: var(--secondary); margin-bottom: 25px; }
+.article-title { font-size: clamp(38px, 6vw, 65px); font-weight: 300; line-height: 1.05; letter-spacing: -2.5px; margin: 0 0 60px; }
+.article-body { font-size: 17px; line-height: 1.95; font-weight: 400; }
+.article-body p { margin: 0 0 28px; }
+footer { border-top: 1px solid var(--line); padding: 35px 0 50px; display: flex; justify-content: space-between; font-size: 10px; color: var(--secondary); letter-spacing: 1px; text-transform: uppercase; }
+@media(max-width: 700px) {
+    header { padding-top: 28px; }
+    .logo { font-size: 29px; }
+    nav { display: none; }
+    .hero { padding: 90px 0 75px; }
+    .hero h1 { letter-spacing: -2px; }
+    .post { grid-template-columns: 35px 1fr; }
+    .post-date { display: none; }
+}
+</style>
+</head>
+<body>
+<header>
+    <div class="logo" onclick="showHome()">René Más</div>
+    <nav>
+        <a href="#" onclick="showHome()">Reflexiones</a>
+        <a href="#sobre-mi">Sobre mí</a>
+    </nav>
+</header>
+<main>
+<div class="home" id="home">
+    <section class="hero">
+        <h1>Mis contadas<br>reflexiones</h1>
+        <p>Pensamientos escritos cuando considero que merece la pena escribirlos.</p>
+    </section>
+    <div class="section-title">Reflexiones</div>
+    <section class="posts" id="posts">
+        <article class="post" onclick="openArticle(0)">
+            <span class="post-number">01</span>
+            <div>
+                <h2>Instrucciones sencillas para una mente feliz y funcional</h2>
+                <p>Algunas observaciones sobre la realidad, la responsabilidad personal y nuestra tendencia a convertir las circunstancias en problemas.</p>
+            </div>
+            <span class="post-date">2026</span>
+        </article>
+        <article class="post" onclick="openArticle(1)">
+            <span class="post-number">02</span>
+            <div>
+                <h2>La extraña necesidad de tener razón</h2>
+                <p>Una reflexión provisional sobre las ideas, el ego y nuestra relación con aquello que creemos saber.</p>
+            </div>
+            <span class="post-date">2026</span>
+        </article>
+    </section>
+    <footer>
+        <span>René Más</span>
+        <span>Mis contadas reflexiones</span>
+    </footer>
+</div>
+<article class="reader" id="reader">
+    <button class="back" onclick="showHome()">← Volver</button>
+    <div class="article-date" id="articleDate"></div>
+    <h1 class="article-title" id="articleTitle"></h1>
+    <div class="article-body" id="articleBody"></div>
+</article>
+</main>
+<script>
+const articles = [
+{
+    title: "Instrucciones sencillas para una mente feliz y funcional",
+    date: "21 septiembre 2026",
+    body: `
+        <p>Este espacio está preparado para que aquí aparezca tu reflexión completa.</p>
+        <p>Puedes escribir textos tan largos como quieras. El diseño está pensado deliberadamente para que prácticamente desaparezca todo lo demás mientras alguien está leyendo.</p>
+        <p>Cuando tengas terminado el texto definitivo, simplemente sustituimos este contenido por el artículo.</p>
+    `
+},
+{
+    title: "La extraña necesidad de tener razón",
+    date: "2026",
+    body: `
+        <p>Este es un segundo texto provisional.</p>
+        <p>Las diferentes reflexiones aparecerán ordenadas en la portada y cada una tendrá su propia vista de lectura.</p>
+    `
+}
+];
+function openArticle(index) {
+    const article = articles[index];
+    document.getElementById("articleTitle").textContent = article.title;
+    document.getElementById("articleDate").textContent = article.date;
+    document.getElementById("articleBody").innerHTML = article.body;
+    document.getElementById("home").classList.add("hidden");
+    document.getElementById("reader").classList.add("active");
+    window.scrollTo(0, 0);
+}
+function showHome() {
+    document.getElementById("reader").classList.remove("active");
+    document.getElementById("home").classList.remove("hidden");
+    window.scrollTo(0, 0);
+}
+</script>
+</body>
+</html>
